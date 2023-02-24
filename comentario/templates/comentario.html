@@ -1,0 +1,36 @@
+{% extends "./index.html" %}
+{% load static %}
+{% block title %}Seccion de comentarios{% endblock %}
+
+{% block body %}
+
+<nav class="navbar ">
+  <div class="container-fluid">
+    <form action="/filtro/" method="GET" class="d-flex" role="search">
+      <input class="form-control me-2" id="txttitulo" name="txttitulo" type="search" placeholder="Busca tus comentarios" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit"><img src="{% static 'img/searchcoment.png' %}" alt="" height="25px"></button>
+    </form>
+  </div>
+</nav>
+
+    
+    {% for pro in coment %}
+    <div class="container-fluid py-4">
+    <div class="card text-justify" style="background-color: beige;">
+      <div class="card-header">
+        <h4 class="text-center"><img src="{% static 'img/number.png' %} " alt="" height="25px">({{forloop.counter}}) {{pro.descripcion}}</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Libro: {{pro.libro.titulo}}</h5>
+        <h5 class="card-title">Lector: {{pro.lector}}</h5>
+        <h5 class="card-title">Comentario: {{pro.descripcion}}</h5>
+      </div>
+      <div class="card-footer text-muted">
+        <p class="card-text">{{pro.date}}</p>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+    {% endblock %}

@@ -1,0 +1,78 @@
+{% extends "./index.html" %}
+{% load static %}
+{% block title %}Lectura{% endblock %}
+
+{% block body %}
+
+
+{%for pro in proyect%}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0" >
+    <div class="col-md-4">
+      <img src="{{pro.image.url}}" class="img-fluid rounded-start" alt="..." height="20px">
+    </div>
+    <div class="col-md-8" style="background-color: beige;">
+      <div class="card-body">
+        <h5 class="card-title">Sinopsis {{pro.titulo}}:</h5>
+        <p class="card-text">{{pro.descripcion}}</p>
+        <a href="{{pro.url}}"><img src="{% static 'img/leer.png' %}" alt="" height="20px"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-sm-4 offset-sm-4">
+ <div class="card card-body">
+<form action="/pos/" method="POST">{% csrf_token %}
+  <div class="form-group">
+    <input type="number" value="{{pro.id}}" id="grupo" name="grupo"  class="form-control" readonly  autofocus>
+</div>
+  <div class="form-group">
+          <input type="text" id="nombre" name="nombre"  class="form-control" placeholder="Lector" >
+  </div>
+  <div class="form-group">
+      <input type="text" id="descripcion" name="descripcion"  class="form-control" placeholder="Escribe un comentario" >
+</div>
+<button  type="submit" class="btn btn-primary btn-block">
+  Publicar
+</button>
+</form>
+ </div>
+  </div>
+</div>
+
+{%endfor%}
+
+
+
+    
+    {% for pro in este %}
+    <div class="container-fluid py-4">
+    <div class="card text-justify"  style="background-color: beige;">
+      <div class="card-header">
+        <h4 class="text-center"><img src="{% static 'img/number.png' %} " alt="" height="25px">({{forloop.counter}}) {{pro.descripcion}}</h4>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Libro: {{pro.libro.titulo}}</h5>
+        <h5 class="card-title">Lector: {{pro.lector}}</h5>
+        <h5 class="card-title">Comentario: {{pro.descripcion}}</h5>
+      </div>
+      <div class="card-footer text-muted">
+        <p class="card-text">{{pro.date}}</p>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+
+
+    {% endblock %}
+
+
+
+
+
+

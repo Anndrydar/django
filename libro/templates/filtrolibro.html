@@ -1,0 +1,47 @@
+{% extends "./index.html" %}
+{% load static %}
+{% block title %}Busquedad de libros{% endblock %}
+
+{% block body %}
+<nav class="navbar ">
+    <div class="container-fluid">
+      <form action="/filtro/" method="GET" class="d-flex" role="search">
+        <input class="form-control me-2" id="txttitulo" name="txttitulo" type="search" placeholder="Buscar libros" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit"><img src="{% static 'img/searchbook.png' %}" alt="" height="25px"></button>
+      </form>
+    </div>
+  </nav>
+
+
+
+  <div class="row my-4 text-center">
+    {%for pro in fil%}
+    <div  class="col-md-4 p-4 " >
+      <div class="card card-project" style="background-color: beige;">
+        <div class="container-fluid py-2">
+        <div class="card-body">
+          <h2 class="card-title">{{pro.titulo}}</h2>
+          <a href="/comentariolibro/{{pro.titulo}}"><img src="{{pro.image.url}}" class="img-fluid rounded-start" alt="..." height="50px" width="200px"></a>
+          <h6>{{pro.grupo.nombre}}</h6>
+        </div>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
