@@ -19,7 +19,7 @@ def hacerComentario(request):
     comentario = request.POST['descripcion']
     book = Projecto.objects.get(id=libro)
     publicacion = Comentario.objects.create(libro = book,lector=lector,descripcion=comentario)
-    return redirect(reverse('comentariolibro')+"?ok")
+    return redirect('/')
 
 
 
